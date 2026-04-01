@@ -43,6 +43,7 @@ const Index = () => {
         <EmojiRain />
         <FloatingNav />
         <HeroSection />
+        <BirthdayCountdown />
         <CountdownTimer />
         <div id="miss"><ThingsIMiss /></div>
         <div id="stars"><StarWall /></div>
