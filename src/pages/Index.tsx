@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import PasswordGate from "@/components/PasswordGate";
 import HeroSection from "@/components/HeroSection";
 import CountdownTimer from "@/components/CountdownTimer";
+import BirthdayCountdown from "@/components/BirthdayCountdown";
 import ThingsIMiss from "@/components/ThingsIMiss";
 import StarWall from "@/components/StarWall";
 import AnimatedTimeline from "@/components/AnimatedTimeline";
