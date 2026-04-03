@@ -3,10 +3,8 @@ import { motion } from "framer-motion";
 
 const sections = [
   { id: "hero", label: "Top" },
-  { id: "countdown", label: "Countdown" },
   { id: "miss", label: "Miss You" },
   { id: "stars", label: "Stars" },
-  { id: "timeline", label: "Kahani" },
   { id: "gallery", label: "Gallery" },
   { id: "reasons", label: "Reasons" },
   { id: "spotify", label: "Music" },

@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import PasswordGate from "@/components/PasswordGate";
 import HeroSection from "@/components/HeroSection";
-import CountdownTimer from "@/components/CountdownTimer";
 import BirthdayCountdown from "@/components/BirthdayCountdown";
 import ThingsIMiss from "@/components/ThingsIMiss";
 import StarWall from "@/components/StarWall";
-import AnimatedTimeline from "@/components/AnimatedTimeline";
 import MemoryGallery from "@/components/MemoryGallery";
 import ReasonsILoveYou from "@/components/ReasonsILoveYou";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
@@ -45,10 +43,8 @@ const Index = () => {
         <FloatingNav />
         <HeroSection />
         <BirthdayCountdown />
-        <CountdownTimer />
         <div id="miss"><ThingsIMiss /></div>
         <div id="stars"><StarWall /></div>
-        <div id="timeline"><AnimatedTimeline /></div>
         <div id="gallery"><MemoryGallery /></div>
         <div id="reasons"><ReasonsILoveYou /></div>
         <div id="spotify"><SpotifyEmbed /></div>
