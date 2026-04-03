@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 
-const LAST_TALK_DATE = new Date("2024-05-13T00:00:00");
+const LAST_TALK_DATE = new Date("2025-05-13T00:00:00");
 
 const CountdownTimer = () => {
   const [days, setDays] = useState(0);
