@@ -14,6 +14,7 @@ import DailyMessage from "@/components/DailyMessage";
 import DreamFuture from "@/components/DreamFuture";
 import SecretMessage from "@/components/SecretMessage";
 import LoveLetter from "@/components/LoveLetter";
+import MandirMoment from "@/components/MandirMoment";
 import IfYoureReadingThis from "@/components/IfYoureReadingThis";
 import FooterSection from "@/components/FooterSection";
 import EmojiRain from "@/components/EmojiRain";
