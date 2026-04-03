@@ -56,6 +56,7 @@ const Index = () => {
         <div id="dreams"><DreamFuture /></div>
         <SecretMessage />
         <div id="letter"><LoveLetter /></div>
+        <div id="mandir"><MandirMoment /></div>
         <div id="reading"><IfYoureReadingThis /></div>
         <FooterSection />
       </div>
