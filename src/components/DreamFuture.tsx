@@ -1,21 +1,9 @@
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
-const dreams = [
-  { text: "Teri favourite coffee, meri baatein — aur koi time limit nahi", emoji: "☕" },
-  { text: "Mountains ho ya beaches — bas tu saath ho", emoji: "✈️" },
-  { text: "Chhota sa ghar — par tera aur mera. Fairy lights wala.", emoji: "🏡" },
-  { text: "Terrace pe lait ke stars dekhenge — teri ungliyon mein ungliyaan", emoji: "🌟" },
-  { text: "Windows down, music on, tera haath mera haath mein", emoji: "🛣️" },
-  { text: "Buddhe hoke bhi tujhe Mishtu bulaunga — promise", emoji: "👴🏻👵🏻" },
-  { text: "Subah uthke tera chehra dekhna — bas yahi routine chahiye", emoji: "🌅" },
-  { text: "Tere sar pe haath rakhke sona — world ki sabse peaceful feeling", emoji: "😴" },
-];
-
 const DreamFuture = () => {
   return (
     <section className="py-24 bg-background relative overflow-hidden">
-      {/* Soft floating orbs */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(4)].map((_, i) => (
           <motion.div
@@ -34,7 +22,7 @@ const DreamFuture = () => {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto max-w-3xl px-6">
+      <div className="relative z-10 mx-auto max-w-2xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,63 +32,55 @@ const DreamFuture = () => {
           <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
             Ek Din... 🌙
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground italic font-display">
-            Bas mera dil karta hai tere saath rahu, tere paas rahu — pyaar se, hamesha 🤍
-          </p>
         </motion.div>
 
-        {/* Flowing vertical layout */}
-        <div className="relative">
-          {/* Center line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
-
-          <div className="space-y-6">
-            {dreams.map((dream, i) => {
-              const isLeft = i % 2 === 0;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, type: "spring", damping: 22 }}
-                  className={`flex items-center gap-4 ${isLeft ? "justify-end pr-[52%]" : "justify-start pl-[52%]"}`}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.04, y: -3 }}
-                    className="glass-card rounded-2xl px-5 py-4 max-w-xs cursor-default"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="text-xl shrink-0 mt-0.5">{dream.emoji}</span>
-                      <p className="font-display text-sm italic text-foreground/90 leading-relaxed">
-                        {dream.text}
-                      </p>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Center heart */}
-          <motion.div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Heart className="h-5 w-5 text-primary/40" fill="currentColor" />
-          </motion.div>
-        </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-14 text-center font-display text-sm italic text-primary"
+          transition={{ duration: 0.8 }}
+          className="paper-texture rounded-2xl p-8 md:p-12 shadow-xl border border-border/30 relative overflow-hidden"
         >
-          Bahut cute cute moments banayenge — tu bas haan bol 🤍
-        </motion.p>
+          <Heart
+            className="absolute -right-3 -top-3 h-14 w-14 text-primary/10 rotate-12"
+            fill="currentColor"
+          />
+          <Heart
+            className="absolute -left-3 -bottom-3 h-14 w-14 text-primary/10 -rotate-12"
+            fill="currentColor"
+          />
+
+          <div className="relative z-10 space-y-6">
+            {[
+              "Bas mera dil karta hai tere saath rahu, tere paas rahu — hamesha. 🤍",
+              "Apne bahut cute cute moments banayein — woh waale jinhe yaad karke dono muskurayein.",
+              "Pyaar se rehna hai — chhoti chhoti baaton mein, nazron mein, khamoshiyon mein bhi.",
+              "Firse pehle jaisa milna chahta hu — woh wali chemistry, woh wali baat, woh wala ehsaas.",
+              "Pyaar se jaane ke baad pata lagta hai heere ki keemat — aur tu mera heera hai, Mishtu.",
+            ].map((line, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="font-display text-base md:text-lg italic leading-relaxed text-foreground"
+              >
+                {line}
+              </motion.p>
+            ))}
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8 }}
+              className="mt-8 text-right font-display text-sm text-primary"
+            >
+              — Tera bacha 🤍
+            </motion.p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
