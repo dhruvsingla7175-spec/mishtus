@@ -7,7 +7,7 @@ import ThingsIMiss from "@/components/ThingsIMiss";
 import StarWall from "@/components/StarWall";
 import MemoryGallery from "@/components/MemoryGallery";
 import ReasonsILoveYou from "@/components/ReasonsILoveYou";
-import SpotifyEmbed from "@/components/SpotifyEmbed";
+
 import DailyMessage from "@/components/DailyMessage";
 import DreamFuture from "@/components/DreamFuture";
 import SecretMessage from "@/components/SecretMessage";
