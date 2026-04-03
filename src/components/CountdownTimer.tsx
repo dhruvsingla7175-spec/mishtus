@@ -80,15 +80,21 @@ const CountdownTimer = () => {
           ))}
         </motion.div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
-          className="mt-8 font-display text-sm italic text-muted-foreground"
+          className="mt-10 space-y-1 font-display text-sm italic text-muted-foreground"
         >
-          "Par count karte raha... kyunki bhula nahi paya"
-        </motion.p>
+          <p>Tumse hi kiya shuru</p>
+          <p>Tum par hi sab khatam</p>
+          <p>Tum sa nahi hai koi</p>
+          <p>Hoon mein bas tera</p>
+          <p className="mt-3">Aisi dillagi hai tu</p>
+          <p>Socha jo wahi hai tu</p>
+          <p>Meri zindagi hai tu 🤍</p>
+        </motion.div>
       </div>
     </section>
   );
