@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 
 const things = [
-  { emoji: "😊", text: "Teri woh smile jo sab theek kar deti thi" },
+  { emoji: "😊", text: "Aapki woh smile jo sab theek kar deti hai but bahot time se mere samne nahi kare... kardiya karo bacha khushhh ho jayega " },
   { emoji: "📱", text: "Raat ko teri lambi voice notes sunna" },
   { emoji: "😂", text: "Tera mujhpe hass ke gussa karna" },
   { emoji: "🌙", text: "Good night bolne ka woh routine" },
