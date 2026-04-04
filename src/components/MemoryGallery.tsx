@@ -98,15 +98,21 @@ const MemoryGallery = () => {
               >
                 <X size={20} />
               </button>
-              <div className="flex h-48 w-full items-center justify-center rounded-xl bg-blush/30">
-                <Heart className="h-16 w-16 text-primary/30" fill="currentColor" />
-              </div>
+              {galleryItems[lightbox].src ? (
+                <img src={galleryItems[lightbox].src} alt={galleryItems[lightbox].caption} className="max-h-[60vh] w-full rounded-xl object-contain" />
+              ) : (
+                <div className="flex h-48 w-full items-center justify-center rounded-xl bg-blush/30">
+                  <Heart className="h-16 w-16 text-primary/30" fill="currentColor" />
+                </div>
+              )}
               <p className="font-display text-lg italic text-foreground">
-                {placeholders[lightbox].caption}
+                {galleryItems[lightbox].caption}
               </p>
-              <p className="text-xs text-muted-foreground">
-                Photo / video yahan aayegi 🤍
-              </p>
+              {!galleryItems[lightbox].src && (
+                <p className="text-xs text-muted-foreground">
+                  Photo / video yahan aayegi 🤍
+                </p>
+              )}
             </motion.div>
           </motion.div>
         )}
