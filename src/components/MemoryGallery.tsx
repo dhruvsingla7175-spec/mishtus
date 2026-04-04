@@ -44,7 +44,7 @@ const MemoryGallery = () => {
 
         {/* Masonry grid */}
         <div className="columns-2 gap-4 md:columns-3 lg:columns-4">
-          {placeholders.map((item) => (
+          {galleryItems.map((item) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 30 }}
@@ -55,11 +55,14 @@ const MemoryGallery = () => {
               style={{ height: item.height }}
               onClick={() => setLightbox(item.id)}
             >
-              {/* Placeholder card */}
-              <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-blush/40 transition-colors group-hover:bg-blush/60">
-                <Heart className="h-8 w-8 text-primary/40 animate-heartbeat" fill="currentColor" />
-                <Image className="h-5 w-5 text-primary/30" />
-              </div>
+              {item.src ? (
+                <img src={item.src} alt={item.caption} className="h-full w-full object-cover" />
+              ) : (
+                <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-blush/40 transition-colors group-hover:bg-blush/60">
+                  <Heart className="h-8 w-8 text-primary/40 animate-heartbeat" fill="currentColor" />
+                  <Image className="h-5 w-5 text-primary/30" />
+                </div>
+              )}
 
               {/* Hover caption overlay */}
               <div className="absolute inset-0 flex items-end bg-foreground/0 p-4 transition-all group-hover:bg-foreground/40 group-hover:backdrop-blur-sm">
