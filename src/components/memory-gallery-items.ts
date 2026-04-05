@@ -47,6 +47,16 @@ import gallery46 from "@/assets/gallery-46.png";
 import gallery47 from "@/assets/gallery-47.png";
 import gallery48 from "@/assets/gallery-48.png";
 import gallery49 from "@/assets/gallery-49.png";
+import gallery50 from "@/assets/gallery-50.png";
+import gallery51 from "@/assets/gallery-51.png";
+import gallery52 from "@/assets/gallery-52.png";
+import gallery53 from "@/assets/gallery-53.png";
+import gallery54 from "@/assets/gallery-54.png";
+import gallery55 from "@/assets/gallery-55.png";
+import gallery56 from "@/assets/gallery-56.png";
+import gallery57 from "@/assets/gallery-57.png";
+import gallery58 from "@/assets/gallery-58.png";
+import gallery59 from "@/assets/gallery-59.png";
 
 export type GalleryItem = {
   id: number;
