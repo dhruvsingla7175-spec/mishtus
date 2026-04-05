@@ -32,7 +32,7 @@ const StarWall = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-night py-20">
+    <section className="relative overflow-hidden bg-gradient-night py-16 md:py-20">
       {/* Background stars */}
       {Array.from({ length: 40 }, (_, i) => (
         <div
