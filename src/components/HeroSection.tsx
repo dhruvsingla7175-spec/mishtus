@@ -11,7 +11,7 @@ const petals = Array.from({ length: 25 }, (_, i) => ({
   size: 8 + Math.random() * 18,
 }));
 
-const subtitle = "Happy Birthday Mishty darluuuu bahot pyaar se likha hai thoda time nikaal ke ache se padh lena aur agar time na mille toh mujhe apne paas rakh lena main apne dil ki baatein sunata rahunga aur apki baatein sunnta rhunga";
+const subtitle = "Happy Birthday Mishty darluuuu 🎂\nbahot pyaar se likha hai thoda time nikaal ke ache se padh lena aur agar time na mille toh mujhe apne paas rakh lena";
 
 const quotes = [
   "Meri zindagi hai tu 🤍",
