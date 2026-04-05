@@ -6,11 +6,13 @@ import coupleSilhouette from "@/assets/couple-silhouette.png";
 const subtitle = "Janam din mubaarak ho meri jaan 🎂✨\nDuniya ki saari khushiyaan teri jholi mein aayein — aur mein bhi 🤍\nAaj teri duniya ka sabse khaas din hai\npar meri duniya toh roz khaas hoti hai — kyunki tu hai na 💕";
 
 const quotes = [
-  "Tere bina din adhoora lagta hai 🥺",
-  "Tera chehra dekh ke sab bhool jaata hoon 💫",
+  "Happyyyy birthday to my jigar ka tukdaaaaa 🤌🥹❤️",
+  "Meri lifeee ch tusi aye mein bahot lucky aa 🥹❤️",
+  "Meinu ni lgya si ehni long chluga — par chl reha hai TOUCHWOOD!! 🤍",
+  "Mein apne vlooo pura rkhunga foreverrrrr 🥹💋❤️",
+  "Loveeeeee uuuuuu alottttttt myy sweatiest gurl 😘💋❤️",
+  "Jo chahida thonu meinu dsdeya kro — bss tusi khush rho hmeshaa 💘",
   "Crush thi, hai, aur rahegi — forever ✨",
-  "Ek teri hansi pe sab kurban 🤍",
-  "Meri sabse favourite notification — tera naam 📱💕",
   "Tujhe dekh ke dil bolta hai — yahi hai meri wali 😏🤍",
 ];
 
