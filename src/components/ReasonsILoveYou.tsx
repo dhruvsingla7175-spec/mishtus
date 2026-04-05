@@ -22,7 +22,7 @@ const reasons = [
 const ReasonsILoveYou = () => {
   return (
     <section className="py-16 md:py-20 bg-background overflow-hidden">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-4xl px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
