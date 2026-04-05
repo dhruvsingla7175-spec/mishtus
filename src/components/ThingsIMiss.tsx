@@ -35,9 +35,6 @@ const ThingsIMiss = () => {
           <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
             Things I Miss About You
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Yeh list khatam nahi hoti 🤍
-          </p>
         </motion.div>
 
         <div className="relative flex items-center justify-center gap-4">
