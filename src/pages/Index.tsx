@@ -4,6 +4,7 @@ import PasswordGate from "@/components/PasswordGate";
 import HeroSection from "@/components/HeroSection";
 import BirthdayCountdown from "@/components/BirthdayCountdown";
 import SectionDivider from "@/components/SectionDivider";
+import AnimatedTimeline from "@/components/AnimatedTimeline";
 
 import StarWall from "@/components/StarWall";
 import MemoryGallery from "@/components/MemoryGallery";
@@ -46,6 +47,8 @@ const Index = () => {
         <SectionDivider variant="glow" />
         <BirthdayCountdown />
         <SectionDivider variant="dots" />
+        <div id="timeline"><AnimatedTimeline /></div>
+        <SectionDivider variant="glow" />
         
         <div id="stars"><StarWall /></div>
         <SectionDivider variant="glow" />
