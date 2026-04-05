@@ -13,7 +13,7 @@ const PasswordGate = ({ onUnlock }: PasswordGateProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.toLowerCase().trim() === "mishtu") {
+    if (password.trim() === "DM@2024") {
       setUnlocking(true);
       setTimeout(() => {
         localStorage.setItem("mishtu-unlocked", "true");
