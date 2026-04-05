@@ -37,7 +37,7 @@ const ReasonsILoveYou = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-2.5 md:gap-3">
           {reasons.map((reason, i) => (
             <motion.div
               key={i}
