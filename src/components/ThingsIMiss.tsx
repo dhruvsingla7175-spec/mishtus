@@ -36,7 +36,7 @@ const ThingsIMiss = () => {
             Things I Miss About You
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Yeh list khatam nahi hoti 🤍 haar chizzon mein pyaar he dikhta
+            Yeh list khatam nahi hoti 🤍
           </p>
         </motion.div>
 
