@@ -5,8 +5,8 @@ import childhood1 from "@/assets/childhood-1.png";
 import childhood2 from "@/assets/childhood-2.png";
 
 const galleryItems = [
-  { id: 0, src: childhood1, caption: "Choote hote ke photos 🤍 isse proof hota hai hamaare ladke ladko se kaam hote hai", height: 340 },
-  { id: 1, src: childhood2, caption: "Family wali photo — kitne cute the hum 🥺", height: 340 },
+  { id: 0, src: childhood1, caption: "Proof hota hai hamaare ladke ladko se kaam thodi hai", height: 340 },
+  { id: 1, src: childhood2, caption: "Mishtuuu bachuu", height: 340 },
   ...Array.from({ length: 6 }, (_, i) => ({
     id: i + 2,
     src: null as string | null,

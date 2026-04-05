@@ -11,7 +11,7 @@ const petals = Array.from({ length: 25 }, (_, i) => ({
   size: 8 + Math.random() * 18,
 }));
 
-const subtitle = "Happy Birthday Mishty darluuuu bahot pyaar se likha hai thoda time nikaal ke ache se padh lena aur agar time na mille toh mujhe apne paas rakh lena main apne dil ki baatein sunata rahunga aur apki baatein sunnta rhunga";
+const subtitle = "Happy Birthday Mishty darluuuu 🎂\nbahot pyaar se likha hai thoda time nikaal ke ache se padh lena aur agar time na mille toh mujhe apne paas rakh lena";
 
 const quotes = [
   "Meri zindagi hai tu 🤍",
@@ -204,7 +204,7 @@ const HeroSection = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-6 min-h-[2em]"
         >
-          <span className="font-display text-xl italic text-muted-foreground md:text-2xl">
+          <span className="font-display text-xl italic text-muted-foreground md:text-2xl whitespace-pre-wrap">
             {typed}
           </span>
           <motion.span
@@ -230,7 +230,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.6 }}
-              className="font-display text-base md:text-lg text-primary/70 italic"
+              className="font-display text-base md:text-lg text-primary/70 italic opacity-65"
             >
               {quotes[quoteIndex]}
             </motion.p>
