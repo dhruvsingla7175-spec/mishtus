@@ -12,6 +12,16 @@ import gallery8 from "@/assets/gallery-8.png";
 import gallery9 from "@/assets/gallery-9.png";
 import gallery10 from "@/assets/gallery-10.png";
 import gallery11 from "@/assets/gallery-11.png";
+import gallery12 from "@/assets/gallery-12.png";
+import gallery13 from "@/assets/gallery-13.png";
+import gallery14 from "@/assets/gallery-14.png";
+import gallery15 from "@/assets/gallery-15.png";
+import gallery16 from "@/assets/gallery-16.png";
+import gallery17 from "@/assets/gallery-17.png";
+import gallery18 from "@/assets/gallery-18.png";
+import gallery19 from "@/assets/gallery-19.png";
+import gallery20 from "@/assets/gallery-20.png";
+import gallery21 from "@/assets/gallery-21.png";
 
 type GalleryItem = {
   id: number;
@@ -33,7 +43,17 @@ const galleryItems: GalleryItem[] = [
   { id: 8, src: gallery9, caption: "Princess vibes ✨", height: 340, type: "image" },
   { id: 9, src: gallery10, caption: "Swag wali photo 😎", height: 260, type: "image" },
   { id: 10, src: gallery11, caption: "Birthday celebration 🎂", height: 340, type: "image" },
-  { id: 11, src: "/videos/gallery-video.mp4", caption: "Hamare special moments 🎬", height: 320, type: "video" },
+  { id: 11, src: gallery12, caption: "Pyaari si selfie 💕", height: 320, type: "image" },
+  { id: 12, src: gallery13, caption: "Dono cuties 🤍", height: 280, type: "image" },
+  { id: 13, src: gallery14, caption: "Friends forever 💫", height: 300, type: "image" },
+  { id: 14, src: gallery15, caption: "Mickey ke saath 🐭", height: 340, type: "image" },
+  { id: 15, src: gallery16, caption: "Golden moments ✨", height: 320, type: "image" },
+  { id: 16, src: gallery17, caption: "Holi ki masti phir se 🎨", height: 340, type: "image" },
+  { id: 17, src: gallery18, caption: "Mirror selfie queen 📸", height: 360, type: "image" },
+  { id: 18, src: gallery19, caption: "Shopping wali vibes 🛍️", height: 340, type: "image" },
+  { id: 19, src: gallery20, caption: "Mickey mouse ki fan 🐭", height: 360, type: "image" },
+  { id: 20, src: gallery21, caption: "Aur ek mirror selfie 📸", height: 340, type: "image" },
+  { id: 21, src: "/videos/gallery-video.mp4", caption: "Hamare special moments 🎬", height: 320, type: "video" },
 ];
 
 const MemoryGallery = () => {
@@ -64,7 +84,7 @@ const MemoryGallery = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: item.id * 0.08 }}
+              transition={{ delay: item.id * 0.05 }}
               className="group relative mb-4 cursor-pointer overflow-hidden rounded-xl"
               style={{ height: item.height }}
               onClick={() => setLightbox(item.id)}
