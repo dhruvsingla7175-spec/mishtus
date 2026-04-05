@@ -127,4 +127,5 @@ export const galleryItems: GalleryItem[] = [
   { id: 57, src: gallery59, caption: "Balloon wali smile 🎈", height: 360, type: "image" },
   { id: 58, src: "/videos/gallery-video.mp4", caption: "Hamare special moments 🎬", height: 320, type: "video" },
   { id: 59, src: "/videos/gallery-video-2.mp4", caption: "Ek aur special moment 🎥", height: 320, type: "video" },
+  { id: 60, src: "/videos/VID-20200126-WA0007.mp4", caption: "Yeh wala moment bhi 🎬", height: 320, type: "video" },
 ];
