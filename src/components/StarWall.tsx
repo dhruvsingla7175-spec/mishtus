@@ -57,7 +57,7 @@ const StarWall = () => {
             Wishes & Promises
           </h2>
           <p className="mt-3 font-body text-sm" style={{ color: "hsl(30, 30%, 70%)" }}>
-            Har star mein ek vaada hai — tap karke dekh 🌟
+            17 stars, 17 saal, 17 vaade — tap karke dekh 🌟
           </p>
         </motion.div>
 
