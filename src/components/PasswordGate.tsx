@@ -267,7 +267,7 @@ const PasswordGate = ({ onUnlock }: PasswordGateProps) => {
             </AnimatePresence>
           </motion.div>
         ) : (
-          /* Unlock animation */
+          /* Unlock animation — dramatic */
           <motion.div
             key="unlock"
             initial={{ scale: 0 }}
@@ -275,42 +275,136 @@ const PasswordGate = ({ onUnlock }: PasswordGateProps) => {
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="relative z-10 flex flex-col items-center gap-4"
           >
+            {/* Screen flash */}
             <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 0.6, repeat: 3 }}
+              className="fixed inset-0 z-0"
+              style={{ background: "hsl(340 60% 65%)" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.4, 0] }}
+              transition={{ duration: 0.6 }}
+            />
+
+            {/* Pulsing heart */}
+            <motion.div
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 0.5, repeat: 4 }}
             >
-              <Heart className="h-24 w-24" fill="hsl(340 60% 65%)" stroke="hsl(340 60% 65%)" />
+              <Heart className="h-28 w-28" fill="hsl(340 60% 65%)" stroke="hsl(340 60% 65%)" />
             </motion.div>
-            {/* Heart burst particles */}
-            {[...Array(20)].map((_, i) => (
+
+            {/* Firework bursts — 3 rings at different delays/sizes */}
+            {[
+              { count: 24, radius: 160, delay: 0.2, size: 14 },
+              { count: 18, radius: 100, delay: 0.5, size: 10 },
+              { count: 30, radius: 220, delay: 0.8, size: 8 },
+            ].map((ring, ri) =>
+              [...Array(ring.count)].map((_, i) => {
+                const angle = (i * Math.PI * 2) / ring.count;
+                const colors = [
+                  "hsl(340 60% 65%)", "hsl(30 60% 78%)", "hsl(280 50% 70%)",
+                  "hsl(200 60% 70%)", "hsl(50 70% 65%)", "hsl(0 70% 65%)",
+                ];
+                return (
+                  <motion.div
+                    key={`ring-${ri}-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      width: ring.size,
+                      height: ring.size,
+                      background: colors[i % colors.length],
+                      boxShadow: `0 0 8px ${colors[i % colors.length]}`,
+                    }}
+                    initial={{ scale: 0, x: 0, y: 0, opacity: 1 }}
+                    animate={{
+                      scale: [0, 1.2, 0],
+                      x: Math.cos(angle) * ring.radius,
+                      y: Math.sin(angle) * ring.radius,
+                      opacity: [1, 1, 0],
+                    }}
+                    transition={{ duration: 1.4, delay: ring.delay, ease: "easeOut" }}
+                  />
+                );
+              })
+            )}
+
+            {/* Confetti pieces falling */}
+            {[...Array(40)].map((_, i) => {
+              const colors = [
+                "hsl(340 60% 65%)", "hsl(30 60% 78%)", "hsl(280 50% 70%)",
+                "hsl(50 70% 65%)", "hsl(200 60% 70%)", "hsl(120 50% 60%)",
+                "hsl(0 70% 65%)", "hsl(30 50% 92%)",
+              ];
+              const startX = (Math.random() - 0.5) * 400;
+              return (
+                <motion.div
+                  key={`confetti-${i}`}
+                  className="absolute"
+                  style={{
+                    width: 6 + Math.random() * 6,
+                    height: 6 + Math.random() * 6,
+                    borderRadius: Math.random() > 0.5 ? "50%" : "2px",
+                    background: colors[i % colors.length],
+                  }}
+                  initial={{ x: startX, y: -20, opacity: 1, rotate: 0 }}
+                  animate={{
+                    y: 300 + Math.random() * 200,
+                    x: startX + (Math.random() - 0.5) * 150,
+                    opacity: [1, 1, 0],
+                    rotate: Math.random() * 720,
+                  }}
+                  transition={{
+                    duration: 2 + Math.random(),
+                    delay: 0.3 + Math.random() * 0.8,
+                    ease: "easeOut",
+                  }}
+                />
+              );
+            })}
+
+            {/* Floating hearts going up */}
+            {[...Array(12)].map((_, i) => (
               <motion.div
-                key={i}
+                key={`float-heart-${i}`}
                 className="absolute"
-                initial={{ scale: 0, x: 0, y: 0 }}
+                initial={{ y: 50, x: (Math.random() - 0.5) * 200, opacity: 0, scale: 0 }}
                 animate={{
-                  scale: [0, 1, 0],
-                  x: Math.cos((i * Math.PI * 2) / 20) * 140,
-                  y: Math.sin((i * Math.PI * 2) / 20) * 140,
-                  opacity: [1, 0],
+                  y: -200 - Math.random() * 150,
+                  opacity: [0, 1, 0],
+                  scale: [0, 1, 0.5],
                 }}
-                transition={{ duration: 1.5, delay: 0.3 }}
+                transition={{ duration: 2, delay: 0.6 + i * 0.1, ease: "easeOut" }}
               >
-                {i % 2 === 0 ? (
-                  <Heart size={12} fill="hsl(340 60% 65%)" stroke="none" />
-                ) : (
-                  <Sparkles size={10} color="hsl(30 60% 78%)" />
-                )}
+                <Heart size={14 + Math.random() * 10} fill="hsl(340 60% 65%)" stroke="none" />
               </motion.div>
             ))}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
+
+            {/* Welcome text */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="font-display text-xl"
-              style={{ color: "hsl(30 50% 92%)" }}
+              transition={{ delay: 1 }}
+              className="text-center"
             >
-              Welcome, Mishtu 🤍
-            </motion.p>
+              <motion.p
+                className="font-display text-2xl font-bold"
+                style={{
+                  background: "linear-gradient(135deg, hsl(30 50% 92%), hsl(340 60% 80%))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Welcome, Mishtu 🤍
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4 }}
+                className="mt-2 font-body text-sm"
+                style={{ color: "hsl(30 30% 65%)" }}
+              >
+                Tere liye kuch khaas banaya hai ✨
+              </motion.p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
