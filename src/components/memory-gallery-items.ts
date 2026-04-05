@@ -38,6 +38,15 @@ import gallery37 from "@/assets/gallery-37.png";
 import gallery38 from "@/assets/gallery-38.png";
 import gallery39 from "@/assets/gallery-39.png";
 import gallery40 from "@/assets/gallery-40.png";
+import gallery41 from "@/assets/gallery-41.png";
+import gallery42 from "@/assets/gallery-42.png";
+import gallery43 from "@/assets/gallery-43.png";
+import gallery44 from "@/assets/gallery-44.png";
+import gallery45 from "@/assets/gallery-45.png";
+import gallery46 from "@/assets/gallery-46.png";
+import gallery47 from "@/assets/gallery-47.png";
+import gallery48 from "@/assets/gallery-48.png";
+import gallery49 from "@/assets/gallery-49.png";
 
 export type GalleryItem = {
   id: number;
