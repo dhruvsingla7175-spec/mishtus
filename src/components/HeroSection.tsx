@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Sparkles } from "lucide-react";
 import coupleSilhouette from "@/assets/couple-silhouette.png";
 
-const subtitle = "Happy Birthday Mishty darluuuu 🎂\nbahot pyaar se likha hai thoda time nikaal ke ache se padh lena aur agar time na mille toh mujhe apne paas rakh lena";
+const subtitle = "Janam din mubaarak ho meri jaan 🎂✨\nDuniya ki saari khushiyaan teri jholi mein aayein — aur mein hamesha teri wajah se muskuraata rahun 🤍";
 
 const quotes = [
   "Meri zindagi hai tu 🤍",
