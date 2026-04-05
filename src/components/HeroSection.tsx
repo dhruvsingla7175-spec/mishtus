@@ -3,14 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Sparkles } from "lucide-react";
 import coupleSilhouette from "@/assets/couple-silhouette.png";
 
-const subtitle = "Janam din mubaarak ho meri jaan 🎂✨\nDuniya ki saari khushiyaan teri jholi mein aayein — aur mein hamesha teri wajah se muskuraata rahun 🤍";
+const subtitle = "Aaj teri duniya ka sabse khaas din hai 🎂\npar meri duniya toh roz khaas hoti hai — kyunki tu hai na 🤍";
 
 const quotes = [
-  "Meri zindagi hai tu 🤍",
-  "Tum sa nahi hai koi...",
-  "Hoon mein bas tera ✨",
-  "Aisi dillagi hai tu 💫",
-  "Tu meri neend hai, tu meri subah hai 🌅",
+  "Tere bina din adhoora lagta hai 🥺",
+  "Tera chehra dekh ke sab bhool jaata hoon 💫",
+  "Crush thi, hai, aur rahegi — forever ✨",
+  "Ek teri hansi pe sab kurban 🤍",
+  "Meri sabse favourite notification — tera naam 📱💕",
+  "Tujhe dekh ke dil bolta hai — yahi hai meri wali 😏🤍",
 ];
 
 // Pre-generate particles to avoid re-renders
