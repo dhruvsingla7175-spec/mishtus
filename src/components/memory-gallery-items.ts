@@ -57,6 +57,14 @@ import gallery56 from "@/assets/gallery-56.png";
 import gallery57 from "@/assets/gallery-57.png";
 import gallery58 from "@/assets/gallery-58.png";
 import gallery59 from "@/assets/gallery-59.png";
+import gallery60 from "@/assets/gallery-60.png";
+import gallery61 from "@/assets/gallery-61.png";
+import gallery62 from "@/assets/gallery-62.png";
+import gallery63 from "@/assets/gallery-63.png";
+import gallery64 from "@/assets/gallery-64.png";
+import gallery65 from "@/assets/gallery-65.png";
+import gallery66 from "@/assets/gallery-66.png";
+import gallery67 from "@/assets/gallery-67.png";
 
 export type GalleryItem = {
   id: number;
