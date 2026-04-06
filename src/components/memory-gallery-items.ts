@@ -57,6 +57,14 @@ import gallery56 from "@/assets/gallery-56.png";
 import gallery57 from "@/assets/gallery-57.png";
 import gallery58 from "@/assets/gallery-58.png";
 import gallery59 from "@/assets/gallery-59.png";
+import gallery60 from "@/assets/gallery-60.png";
+import gallery61 from "@/assets/gallery-61.png";
+import gallery62 from "@/assets/gallery-62.png";
+import gallery63 from "@/assets/gallery-63.png";
+import gallery64 from "@/assets/gallery-64.png";
+import gallery65 from "@/assets/gallery-65.png";
+import gallery66 from "@/assets/gallery-66.png";
+import gallery67 from "@/assets/gallery-67.png";
 
 export type GalleryItem = {
   id: number;
@@ -128,4 +136,13 @@ export const galleryItems: GalleryItem[] = [
   { id: 58, src: "/videos/gallery-video.mp4", caption: "Holi  2026🎥", height: 320, type: "video" },
   { id: 59, src: "/videos/gallery-video-2.mp4", caption: "Mickey 🐭", height: 320, type: "video" },
   { id: 60, src: "/videos/VID-20200126-WA0007.mp4", caption: "bahottt pyaara dance tha🎬", height: 320, type: "video" },
+  { id: 61, src: gallery60, caption: "Red dress queen 👑", height: 360, type: "image" },
+  { id: 62, src: gallery61, caption: "Dono cuties saath mein 🤍", height: 340, type: "image" },
+  { id: 63, src: gallery62, caption: "Car selfie cuties 💕", height: 300, type: "image" },
+  { id: 64, src: "/videos/gallery-video-3.mp4", caption: "Bachpan ka video 🎬", height: 320, type: "video" },
+  { id: 65, src: gallery63, caption: "Victory sign ✌️", height: 360, type: "image" },
+  { id: 66, src: gallery64, caption: "Nature wali beauty 🌿", height: 360, type: "image" },
+  { id: 67, src: gallery65, caption: "Friendship day collage 💗", height: 380, type: "image" },
+  { id: 68, src: gallery66, caption: "Goa vibes 🏖️", height: 360, type: "image" },
+  { id: 69, src: gallery67, caption: "Panda filter cutie 🐼", height: 340, type: "image" },
 ];
