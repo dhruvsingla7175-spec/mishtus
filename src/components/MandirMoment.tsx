@@ -56,8 +56,7 @@ const MandirMoment = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              Mandir mein Hanuman Chalisa padh raha tha. Aankhen band ki — aur bas ek hi cheez maangi —
-              <span className="text-primary font-semibold"> "Bhagwan ji, ek baar bas Mishtu dikh jaaye."</span>
+              Mandir mein Hanuman Chalisa padh rha tha aankhen band thi aur bas ek hi cheez maangi "Bhagwan ji, ek baar bas Mishty dikh jaaye bahot time hogya"
             </motion.p>
 
             <motion.p
