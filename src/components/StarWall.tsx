@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, X, Sparkles } from "lucide-react";
 
 const wishes = [
-  "Har roz subah uthta hu toh pehla khayal tera hota hai, Mishtu. Yeh badla nahi, badlega bhi nahi.",
+  "Har roz subah uthta hu toh pehla khayal apka hota hai Mishtu Yeh badla nahi, badlega bhi nahi.",
   "Dur hu tujhse, par dil mein itni jagah di hai tune ki koi aur fit hi nahi hota wahan.",
   "Teri khushi ke liye kuch bhi kar sakta hu — yeh promise nahi, yeh meri fitrat hai.",
   "Tu jab bhi akeli feel kare, yaad rakh — ek banda hai jo tujhe hamesha yaad karta hai. Hamesha.",
