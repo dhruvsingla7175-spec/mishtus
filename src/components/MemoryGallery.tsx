@@ -18,9 +18,7 @@ const MemoryGallery = () => {
           <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
             Bachhhu ke pyaari pyaari memories 🤍
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            {"\n\n\n"}
-          </p>
+          <p className="mt-3 text-sm text-muted-foreground">&nbsp;</p>
         </motion.div>
 
         <div className="columns-2 gap-3 md:columns-3 md:gap-4 lg:columns-4">
