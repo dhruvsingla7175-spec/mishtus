@@ -65,6 +65,7 @@ import gallery64 from "@/assets/gallery-64.png";
 import gallery65 from "@/assets/gallery-65.png";
 import gallery66 from "@/assets/gallery-66.png";
 import gallery67 from "@/assets/gallery-67.png";
+import gallery68 from "@/assets/gallery-68.png";
 
 export type GalleryItem = {
   id: number;
@@ -145,4 +146,5 @@ export const galleryItems: GalleryItem[] = [
   { id: 67, src: gallery65, caption: "", height: 380, type: "image" },
   { id: 68, src: gallery66, caption: "", height: 360, type: "image" },
   { id: 69, src: gallery67, caption: "", height: 340, type: "image" },
+  { id: 70, src: gallery68, caption: "", height: 340, type: "image" },
 ];
