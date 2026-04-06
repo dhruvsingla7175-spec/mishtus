@@ -84,7 +84,7 @@ const MandirMoment = () => {
               viewport={{ once: true }}
               transition={{ delay: 1.1 }}
             >
-              Ek jhalak ke liye aadmi kitna tadap jaata hai — yeh sirf wohi jaanta hai jisne sachcha chahha ho.
+              Ek jhalak ke liye aadmi kitna tadap jaata hai yeh sirf vohi jaanta hai jisne sachcha chahha ho
             </motion.p>
 
             <motion.p
