@@ -13,7 +13,7 @@ const FooterSection = () => {
           <Heart className="mx-auto mb-6 h-8 w-8 text-primary animate-heartbeat" fill="currentColor" />
 
           <p className="font-display text-lg italic text-foreground leading-relaxed md:text-xl">
-            "Sangat ka asar ho jayega — par meri yaad nahi jayegi kabhi 🤍"
+            "Sangat ka asar ho jayega par itna ghera bhi ho jayega yeh nahi pta🤍"
           </p>
 
           <p className="mt-6 font-display text-base text-primary">

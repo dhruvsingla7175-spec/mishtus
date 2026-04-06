@@ -30,7 +30,7 @@ const LoveLetter = () => {
           className="text-center mb-12"
         >
           <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
-            Tera Khat 💌
+            Khat for you💌
           </h2>
         </motion.div>
 
