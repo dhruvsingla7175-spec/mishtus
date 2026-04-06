@@ -146,4 +146,5 @@ export const galleryItems: GalleryItem[] = [
   { id: 67, src: gallery65, caption: "", height: 380, type: "image" },
   { id: 68, src: gallery66, caption: "", height: 360, type: "image" },
   { id: 69, src: gallery67, caption: "", height: 340, type: "image" },
+  { id: 70, src: gallery68, caption: "", height: 340, type: "image" },
 ];
