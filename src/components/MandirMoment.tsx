@@ -94,7 +94,7 @@ const MandirMoment = () => {
               transition={{ delay: 1.3 }}
               className="text-lg md:text-xl font-semibold text-primary"
             >
-              I miss you so much, Mishtu. 🤍
+              I missss youuu so muchhh meri mishtuuuu 🤍
             </motion.p>
 
             <motion.p
