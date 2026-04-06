@@ -2,21 +2,21 @@ import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
 const reasons = [
-  "Teri hansi sunke sab theek lagta hai",
-  "Aap bina try kiye bhi sabse khoobsurat lagti ho I remimber bahot bhar without facewash bhi milne aye but itne cute itne cute lagte thi kooi hadd he nahi",
-  "Aapka gussa bhi cute hai",
+  "Everything About You 💕",
+  "Aap bina try kiye bhi sabse khoobsurat lagti ho I remimber bahot bhar without facewash bhi milne aye but itne cute itne cute lagte thi words nahi hai",
+  "Aapka gussa tobba tobba saara din naak pe he rheta",
   "Aapse baat karke din achha ho jaata hai",
-  "Tu samajhti hai bina bole",
-  "Teri aankhein bahut kuch keh deti hain",
-  "Tu sabse alag hai — genuinely",
-  "Tera caring nature",
-  "Jab tu hasti hai toh dimples",
-  "Apka vo confused face",
-  "Tu strong hai — usse bhi zyada jitna tu sochti hai",
-  "Tujhse milke better insaan bana",
-  "Tera sense of humor",
-  "Tu jab serious hoti hai — woh look",
-  "Kyunki tu Mishtu hai — aur wahi kaafi hai 🤍",
+  "Apke ego? Honestly, that's lowkey attractive 😤💕",
+  "Aapke lips bas ek baar😶💋",
+  "Your eyes 👀, Your nose 🥹, Your attitude 😏, Your ego 😤, Your jawline ✨, Your lips 💋, Your height 🫣",
+  "Aapke har choti khushi celebrate karunga, chahe door ho ya paas 🎂",
+  "Jis tarah aap hassti ho kutto ke tira😁",
+  "Apka vo confused face hemasha he rheta",
+  "Aapka attitude mujhe irritate karta hai aur main phir bhi melt ho jaata hu 😏",
+  "Aapse milke better insaan bana",
+  "Aapka sense of humor",
+  "Aapke aankhein ",
+  "Kyunki aap Mishtu ho aur vohi kaafi hai meri jaan 🤍",
 ];
 
 const ReasonsILoveYou = () => {
