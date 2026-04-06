@@ -17,7 +17,7 @@ const FooterSection = () => {
           </p>
 
           <p className="mt-6 font-display text-base text-primary">
-            — Hamesha tera
+            — ALWAYS FOR YOU MERI JAAN MISHTU
           </p>
 
           <div className="mt-12 text-xs text-muted-foreground/50">
