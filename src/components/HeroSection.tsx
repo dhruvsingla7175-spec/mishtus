@@ -93,12 +93,6 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuoteIndex((prev) => (prev + 1) % quotes.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-romantic">
