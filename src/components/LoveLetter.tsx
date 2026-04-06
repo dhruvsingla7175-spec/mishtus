@@ -1,23 +1,23 @@
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
-const letter = `Mishtu Meri Jaan,
+const letter = `Mishtuuuuu meri Jaan,
 
-Yeh likhna easy nahi tha. Kai baar likha, mitaya, phir likha.
+Yeh likhna easy nahi tha Kai baar likha mitaya fir likha
 
-Par aaj likh raha hu kyunki kuch cheezein andar reh jaati hain aur dheere dheere bhaari hone lagti hain.
+Par aaj likh rha hu kyunki kuch cheezein andar reh jaati hai aur dheere dheere bhaari hone lagti hai
 
-Tu jab saamne hoti hai, main kuch bol nahi paata. Aankhein milne se pehle hi sab kuch feel hone lagta hai — dil tez dhadakta hai, words kho jaate hain, aur tu woh dara hua face dekh leti hai jo main chupaana chahta tha.
+Aap jab saamne hoti ho main kuch bol nahi paata aankhein milne se pehle hi sab kuch feel hone lagta hai dil tez dhadakta hai words kho jaate hai aur aap voh dara hua face dekh leti ho jo main chupaana chahta tha
 
-Par jo main chupaata hu woh yeh hai — ki teri ek smile ke liye din ban jaata mera. Sirf ek smile.
+Par jo main chupaata hu voh yeh hai ki aapi ek smile se din ban jaata mera Sirf ek smile 
 
-Tu kehti thi sangat ka asar ho jayega. Ho bhi sakta hai. Par teri yaad ka asar itna gahra hai ki koi sangat usse nahi mita sakti ab.
+Aap kehti thi sangat ka asar ho jayega ho bhi sakta hai par apki yaad ka asar itna gahra hoga ki koi sangat usse nahi mita sakti ab
 
-Main dur hu, haan. Par bhula nahi paya — aur honestly, bhulna chahta bhi nahi.
+Main pass hone ke bhad bhi dur hu haina par bhula nahi paya aur honestly bhulna chahta bhi nahi
 
-Yeh website nahi bani kisi expectation ke saath. Bas isliye bani hai kyunki tu deserve karti hai yeh jaanna — ki koi hai jo tujhe genuinely, deeply, aur bina kisi condition ke yaad karta hai.
+Yeh website nahi bani kisi expectation ke saath bas isliye bani hai kyunki aap deserve karti ho yeh jaanna ki koi hai jo tujhe genuinely deeply, aur bina kisi condition ke yaad karta hai saara saara time
 
-Khush reh, Mishtu. Hamesha.`;
+Khush reh, Mishtu baby Hamesha muaaahhhhhhhhhhh mwwwwwwwaaaaaaaaaahhhhhhhhhhhhhhh`;
 
 const LoveLetter = () => {
   return (

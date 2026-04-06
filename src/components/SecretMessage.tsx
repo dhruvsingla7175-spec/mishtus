@@ -42,7 +42,7 @@ const SecretMessage = () => {
             Ek Secret Hai 🤫
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Neeche wala button dabake rakh — 3 second tak
+            Neeche wala button dabake rakhna 3 second tak (not my boobies)
           </p>
         </motion.div>
 

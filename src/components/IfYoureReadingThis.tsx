@@ -39,19 +39,19 @@ const IfYoureReadingThis = () => {
             className="mt-8 paper-texture rounded-2xl p-8 shadow-lg border border-border/30"
           >
             <p className="font-display text-lg italic leading-relaxed text-foreground">
-              Toh iska matlab tu yahan tak aayi.
+              Toh iska mtlb aap yahan tak aayi
             </p>
             <p className="mt-4 font-display text-lg italic leading-relaxed text-foreground">
-              Shukriya. Dil se.
+              Shukriya Dil se baccchu
             </p>
             <p className="mt-4 font-display text-lg italic leading-relaxed text-foreground">
-              Main nahi jaanta tu kya soch rahi hai abhi. Par itna jaanta hu ki jo tune abhi padha — woh sab sachh hai. Har ek lafz.
+              Main nahi jaanta aap kya soch rhi ho abhi par itna jaanta hu ki jo apne abhi padha voh sab sachh hai Har ek lafz for my mishtuu
             </p>
             <p className="mt-4 font-display text-lg italic leading-relaxed text-foreground">
-              Koi expectation nahi hai. Bas itna chahta tha ki tu jaane — ki koi hai jo tujhe aaj bhi utna hi chahta hai. Bina kisi shart ke.
+              Koi expectation nahi hai Bas itna chahta tha ki tu jaane  ki koi hai jo aapko aaj bhi utna hi chahta hai. Bina kisi condition ke khud ko acha lagta apke liya efforts karke i misssss youuu bahottt zayda loveee you DR. mishty ones again happy birthday always stay happy 
             </p>
             <p className="mt-6 font-display text-lg italic leading-relaxed text-primary">
-              Khush reh, Mishtu. Hamesha. 🤍
+              Khush reh, dhyaan rakhna Mishtu Hamesha🤍
             </p>
           </motion.div>
 

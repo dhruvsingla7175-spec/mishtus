@@ -29,7 +29,7 @@ const MandirMoment = () => {
             Bhagwan Ji Ki Planning ✨
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Hanuman Jayanti — jab ek dua sun li gayi
+            Hanuman Jayanti wale din kasam se vahi pray kar rha tha dikh jaye
           </p>
         </motion.div>
 
@@ -56,8 +56,7 @@ const MandirMoment = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              Mandir mein Hanuman Chalisa padh raha tha. Aankhen band ki — aur bas ek hi cheez maangi —
-              <span className="text-primary font-semibold"> "Bhagwan ji, ek baar bas Mishtu dikh jaaye."</span>
+              Mandir mein Hanuman Chalisa padh rha tha aankhen band thi aur bas ek hi cheez maangi "Bhagwan ji, ek baar bas Mishty dikh jaaye bahot time hogya"
             </motion.p>
 
             <motion.p
@@ -66,8 +65,7 @@ const MandirMoment = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.7 }}
             >
-              Chalisa khatam hui, aankhen kholi — aur tu saamne thi. Sach mein.
-              Hanuman Jayanti ke din, Bhagwan ne prasaad mein meri jaan ki ek jhalak de di. 🙏
+              Chalisa khatam hua aankhen kholi aur aap saamne thi Sach mein apne foots touch hue Hanuman Jayanti ke din Bhagwan ji ne prasaad mein meri jaan ki ek jhalak de di thanks godd🙏
             </motion.p>
 
             <motion.p
@@ -86,7 +84,7 @@ const MandirMoment = () => {
               viewport={{ once: true }}
               transition={{ delay: 1.1 }}
             >
-              Ek jhalak ke liye aadmi kitna tadap jaata hai — yeh sirf wohi jaanta hai jisne sachcha chahha ho.
+              Ek jhalak ke liye aadmi kitna tadap jaata hai yeh sirf vohi jaanta hai jisne sachcha chahha ho
             </motion.p>
 
             <motion.p
@@ -96,7 +94,7 @@ const MandirMoment = () => {
               transition={{ delay: 1.3 }}
               className="text-lg md:text-xl font-semibold text-primary"
             >
-              I miss you so much, Mishtu. 🤍
+              I missss youuu so muchhh meri mishtuuuu 🤍
             </motion.p>
 
             <motion.p
@@ -105,7 +103,7 @@ const MandirMoment = () => {
               viewport={{ once: true }}
               transition={{ delay: 1.5 }}
             >
-              Smile kar diya kar... bahot pyaari lagti hai.
+              Smile kar diya karo... bahot pyaari lagti hoo
             </motion.p>
 
             <motion.p
@@ -115,7 +113,7 @@ const MandirMoment = () => {
               transition={{ delay: 1.7 }}
               className="text-muted-foreground"
             >
-              Itne paas se, bahot time ke baad dikhi — aur dil bas ruk sa gaya. 💫
+              Itne paas se bahot time ke baad dikhi aur dil bas ruk sa  he gya meri heartbeat dikhne thi unexpectedly samne se milna mandir mein its god plaaning i take it as a parshaddd meri jaan💫
             </motion.p>
           </div>
         </motion.div>
