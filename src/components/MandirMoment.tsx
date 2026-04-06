@@ -29,7 +29,7 @@ const MandirMoment = () => {
             Bhagwan Ji Ki Planning ✨
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Hanuman Jayanti — jab ek dua sun li gayi
+            Hanuman Jayanti wale din kasam se vahi pray kar rha tha dikh jaye
           </p>
         </motion.div>
 
