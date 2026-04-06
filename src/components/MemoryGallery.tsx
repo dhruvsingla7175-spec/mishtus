@@ -19,7 +19,7 @@ const MemoryGallery = () => {
             Bachhhu ke pyaari pyaari memories 🤍
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Yeh pe sabi add nahi kar paunga meri aakho mein dikhna kitne pyaaare pyaaare photos hai
+            {"\n\n\n"}
           </p>
         </motion.div>
 

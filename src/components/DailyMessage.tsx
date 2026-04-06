@@ -82,7 +82,7 @@ const DailyMessage = () => {
             </motion.span>
           </p>
           <div className="mt-8 text-right text-sm text-primary font-display">
-            — Tera bacha 🤍
+            — Your bachuu 🤍
           </div>
         </motion.div>
       </div>

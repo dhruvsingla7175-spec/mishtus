@@ -71,7 +71,7 @@ const LoveLetter = () => {
               transition={{ delay: 1 }}
               className="mt-8 text-right font-display text-lg text-primary"
             >
-              — Tera bacha 🤍
+              — MISHTY PAGLUUU 🤍
             </motion.p>
           </div>
         </motion.div>

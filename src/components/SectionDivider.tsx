@@ -9,6 +9,7 @@ const SectionDivider = ({ variant = "glow", className = "" }: SectionDividerProp
   if (variant === "dots") {
     return (
       <div className={`flex items-center justify-center gap-2 py-6 ${className}`}>
+        {"\n\n\n"}
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}

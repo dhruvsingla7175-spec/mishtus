@@ -20,7 +20,7 @@ const FooterSection = () => {
             — ALWAYS FOR YOU MERI JAAN MISHTU
           </p>
 
-          <div className="mt-12 text-xs text-muted-foreground/50">
+          <div className="mt-12 text-muted-foreground/50 text-sm">
             Made with love, for Mishtu 🤍
           </div>
         </motion.div>

@@ -123,16 +123,16 @@ const SecretMessage = () => {
                 </motion.div>
 
                 <p className="font-display text-xl italic leading-relaxed text-foreground">
-                  "Tu meri duniya hai, Mishtu.
+                  "Aap meri duniya ho Mishtu
                 </p>
                 <p className="mt-3 font-display text-xl italic leading-relaxed text-foreground">
-                  Chahe baat ho ya na ho, chahe mile ya na mile — mera dil hamesha tere naam rahega.
+                  Chahe baat ho ya na ho, chahe mile ya na mile mera dil hamesha aaphe ke naam rahega
                 </p>
                 <p className="mt-3 font-display text-xl italic leading-relaxed text-foreground">
-                  Yeh koi promise nahi hai — yeh fact hai."
+                  Yeh koi promise nahi hai yeh reality hai"
                 </p>
                 <p className="mt-6 text-right font-display text-sm text-primary">
-                  — Tera bacha, hamesha 🤍
+                  — Your baby boy cute sa bacha hamesha 🤍
                 </p>
               </div>
             </motion.div>

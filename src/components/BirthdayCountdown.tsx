@@ -105,7 +105,7 @@ const BirthdayCountdown = () => {
                   Happy Birthday DR. MISHTY SINGLA🎂🤍
                 </p>
                 <p className="mt-4 text-right font-display text-sm text-primary">
-                  — Tera bacha 🤍
+                  — Your bacha 🤍
                 </p>
               </div>
             </>
