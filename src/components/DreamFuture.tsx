@@ -52,10 +52,10 @@ const DreamFuture = () => {
 
           <div className="relative z-10 space-y-6">
             {[
-              "Bas mera dil karta hai tere saath rahu, tere paas rahu — hamesha. 🤍",
-              "Apne bahut cute cute moments banayein — woh waale jinhe yaad karke dono muskurayein.",
-              "Pyaar se rehna hai — chhoti chhoti baaton mein, nazron mein, khamoshiyon mein bhi.",
-              "Firse pehle jaisa milna chahta hu — woh wali chemistry, woh wali baat, woh wala ehsaas.",
+              "Bas mera dil karta hai aapke saath rhu, aapke paas rhu hamesha 🤍",
+              "Apne bahut cute cute moments banayein vo waale jinhe yaad karke dono khsuhiiiiaaaa maaane",
+              "Pyaar se rehna hai chhoti chhoti baaton pe ladyi karne hai fir mein nazron se maana bhi aaunga",
+              "Firse pehle jaisa milna chahta hu vohi same spike ke saath, vohi wali baat, vohii sab kuch",
               "Pyaar se jaane ke baad pata lagta hai heere ki keemat — aur tu mera heera hai, Mishtu.",
             ].map((line, i) => (
               <motion.p

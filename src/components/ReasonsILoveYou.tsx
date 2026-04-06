@@ -32,8 +32,9 @@ const ReasonsILoveYou = () => {
           <h2 className="font-display text-4xl font-bold text-foreground md:text-5xl">
             Why You're Special for me💕
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Honestly? Mere paas koi ek reason nahi hai tujhe pasand karne ka I just pyaar youuu 💕
+          <p className="mt-3 text-sm text-muted-foreground whitespace-pre-line">
+            I have no logical reason maybe that's the thing about love, it never needs one 🥹💋{"\n\n"}
+            You're my everything. Simply that. ❤️
           </p>
         </motion.div>
 
