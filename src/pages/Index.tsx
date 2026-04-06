@@ -20,6 +20,7 @@ import FooterSection from "@/components/FooterSection";
 import EmojiRain from "@/components/EmojiRain";
 import DoubleTapHeart from "@/components/DoubleTapHeart";
 import FloatingNav from "@/components/FloatingNav";
+import FloatingQuotes from "@/components/FloatingQuotes";
 
 const Index = () => {
   const [unlocked, setUnlocked] = useState(false);
