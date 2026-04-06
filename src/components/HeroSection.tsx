@@ -330,37 +330,23 @@ const HeroSection = () => {
           </motion.span>
         </motion.div>
 
-        {/* Rotating quotes — larger, with decorative lines */}
+        {/* All "Do you know" lyrics displayed together */}
         <motion.div
           variants={childVariants}
-          className="mt-10 min-h-[3em] flex flex-col items-center justify-center gap-2"
+          className="mt-10 flex flex-col items-center justify-center gap-4"
         >
-          <div className="flex items-center gap-3">
-            <motion.div
-              className="h-px w-8 md:w-12"
-              style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.4))" }}
-              animate={{ scaleX: [0, 1, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity }}
-            />
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={quoteIndex}
-                initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="font-display text-lg md:text-xl text-primary/60 italic"
-              >
-                {quotes[quoteIndex]}
-              </motion.p>
-            </AnimatePresence>
-            <motion.div
-              className="h-px w-8 md:w-12"
-              style={{ background: "linear-gradient(90deg, hsl(var(--primary) / 0.4), transparent)" }}
-              animate={{ scaleX: [0, 1, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity }}
-            />
-          </div>
+          {quotes.filter(q => q.startsWith("Do you know")).map((line, i) => (
+            <motion.p
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 + i * 0.2, duration: 0.8, ease: "easeOut" }}
+              className="font-display text-lg md:text-xl text-primary/60 italic"
+            >
+              {line}
+            </motion.p>
+          ))}
         </motion.div>
 
         {/* Scroll indicator — enhanced */}
