@@ -21,6 +21,7 @@ import EmojiRain from "@/components/EmojiRain";
 import DoubleTapHeart from "@/components/DoubleTapHeart";
 import FloatingNav from "@/components/FloatingNav";
 import FloatingQuotes from "@/components/FloatingQuotes";
+import MessageBox from "@/components/MessageBox";
 
 const Index = () => {
   const [unlocked, setUnlocked] = useState(false);
@@ -70,6 +71,8 @@ const Index = () => {
         <div id="mandir"><MandirMoment /></div>
         <SectionDivider variant="dots" />
         <div id="reading"><IfYoureReadingThis /></div>
+        <SectionDivider variant="dots" />
+        <MessageBox />
         <FooterSection />
       </div>
     </DoubleTapHeart>
