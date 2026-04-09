@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MessageCircleHeart, Smile } from "lucide-react";
+import { Send, MessageCircleHeart, Smile, ImagePlus, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -18,18 +18,68 @@ const MessageBox = () => {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("Sirf photo upload karo 📸");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Photo 5MB se chhoti honi chahiye 🙈");
+      return;
+    }
+    setSelectedImage(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    if (imagePreview) URL.revokeObjectURL(imagePreview);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
   const handleSend = async () => {
-    if (!message.trim()) {
-      toast.error("Please write a message 💌");
+    if (!message.trim() && !selectedImage) {
+      toast.error("Please write a message ya photo add karo 💌");
       return;
     }
     setSending(true);
+
+    let imageUrl: string | null = null;
+
+    // Upload image if selected
+    if (selectedImage) {
+      const ext = selectedImage.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error: uploadError } = await supabase.storage
+        .from("message-attachments")
+        .upload(fileName, selectedImage);
+
+      if (uploadError) {
+        toast.error("Photo upload nahi hui 😢 Try again!");
+        setSending(false);
+        return;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from("message-attachments")
+        .getPublicUrl(fileName);
+      imageUrl = urlData.publicUrl;
+    }
+
     const { error } = await supabase.from("visitor_messages").insert({
       name: name.trim() || "Anonymous",
-      message: message.trim(),
+      message: message.trim() || "(photo attached)",
+      image_url: imageUrl,
     });
+
     setSending(false);
     if (error) {
       toast.error("Message nahi gaya 😢 Try again!");
@@ -37,6 +87,7 @@ const MessageBox = () => {
       toast.success("Message sent! 💕");
       setName("");
       setMessage("");
+      removeImage();
     }
   };
 
@@ -63,7 +114,10 @@ const MessageBox = () => {
             Send me a message 💌
           </h2>
           <p className="text-muted-foreground text-sm mt-1">
-            Kuch bhi likh do, mujhe mil jayega ✨
+            Sirf mujhe show hoga — kabhi bhi koi bhi message dena ho toh you can easily contact me ✨
+          </p>
+          <p className="text-muted-foreground text-xs mt-1">
+            Aur mein iss website ke through regular updates deta rhunga 🤍
           </p>
         </div>
 
@@ -86,16 +140,34 @@ const MessageBox = () => {
               onChange={(e) => setMessage(e.target.value)}
               maxLength={MAX_MESSAGE}
               rows={3}
-              className="w-full rounded-xl border border-border bg-background px-4 py-2.5 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+              className="w-full rounded-xl border border-border bg-background px-4 py-2.5 pr-20 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
             />
-            {/* Emoji toggle */}
-            <button
-              type="button"
-              onClick={() => setShowEmojis((v) => !v)}
-              className="absolute right-3 top-2.5 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Smile className="h-5 w-5" />
-            </button>
+            {/* Action buttons */}
+            <div className="absolute right-3 top-2.5 flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <ImagePlus className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowEmojis((v) => !v)}
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Smile className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageSelect}
+              className="hidden"
+            />
 
             {/* Character count bar */}
             <div className="flex items-center justify-between mt-1.5 px-1">
@@ -123,6 +195,31 @@ const MessageBox = () => {
               </span>
             </div>
           </div>
+
+          {/* Image preview */}
+          <AnimatePresence>
+            {imagePreview && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="relative inline-block"
+              >
+                <img
+                  src={imagePreview}
+                  alt="Selected"
+                  className="h-20 w-20 object-cover rounded-xl border border-border"
+                />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-md"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Emoji picker */}
           <AnimatePresence>
