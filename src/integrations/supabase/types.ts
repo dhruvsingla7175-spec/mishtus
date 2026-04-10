@@ -41,6 +41,27 @@ export type Database = {
         }
         Relationships: []
       }
+      wishes: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          wish: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name?: string
+          wish: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          wish?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

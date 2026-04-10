@@ -11,6 +11,9 @@ const sections = [
   { id: "dreams", label: "Dreams", emoji: "🌙" },
   { id: "letter", label: "Letter", emoji: "✉️" },
   { id: "reading", label: "Final", emoji: "🤍" },
+  { id: "slideshow", label: "Slideshow", emoji: "📸" },
+  { id: "quiz", label: "Quiz", emoji: "💋" },
+  { id: "wishjar", label: "Wishes", emoji: "✨" },
 ];
 
 const FloatingNav = () => {
