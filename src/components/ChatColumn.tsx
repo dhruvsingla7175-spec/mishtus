@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MessageCircleHeart, Smile, X, ImagePlus, Video } from "lucide-react";
+import { Send, MessageCircleHeart, Smile, X, ImagePlus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -55,19 +55,10 @@ const ChatColumn = () => {
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
     const isImage = file.type.startsWith("image/");
     const isVideo = file.type.startsWith("video/");
-
-    if (!isImage && !isVideo) {
-      toast.error("Sirf photo ya video upload karo 📸🎥");
-      return;
-    }
-    if (file.size > 20 * 1024 * 1024) {
-      toast.error("File 20MB se chhoti honi chahiye 🙈");
-      return;
-    }
-
+    if (!isImage && !isVideo) { toast.error("Sirf photo ya video upload karo 📸🎥"); return; }
+    if (file.size > 20 * 1024 * 1024) { toast.error("File 20MB se chhoti honi chahiye 🙈"); return; }
     setSelectedFile(file);
     setFileType(isImage ? "image" : "video");
     setFilePreview(URL.createObjectURL(file));
@@ -84,42 +75,23 @@ const ChatColumn = () => {
   const handleSend = async () => {
     if (!newMessage.trim() && !selectedFile) return;
     setSending(true);
-
     let imageUrl: string | null = null;
-
     if (selectedFile) {
       const ext = selectedFile.name.split(".").pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-      const { error: uploadError } = await supabase.storage
-        .from("message-attachments")
-        .upload(fileName, selectedFile);
-
-      if (uploadError) {
-        toast.error("File upload nahi hui 😢 Try again!");
-        setSending(false);
-        return;
-      }
-
-      const { data: urlData } = supabase.storage
-        .from("message-attachments")
-        .getPublicUrl(fileName);
+      const { error: uploadError } = await supabase.storage.from("message-attachments").upload(fileName, selectedFile);
+      if (uploadError) { toast.error("File upload nahi hui 😢"); setSending(false); return; }
+      const { data: urlData } = supabase.storage.from("message-attachments").getPublicUrl(fileName);
       imageUrl = urlData.publicUrl;
     }
-
     const { error } = await supabase.from("visitor_messages").insert({
       message: newMessage.trim() || (fileType === "video" ? "🎥 Video" : "📸 Photo"),
       name: "Visitor",
       image_url: imageUrl,
     });
-
     setSending(false);
-    if (error) {
-      toast.error("Message nahi gaya 😢");
-    } else {
-      setNewMessage("");
-      removeFile();
-      inputRef.current?.focus();
-    }
+    if (error) { toast.error("Message nahi gaya 😢"); }
+    else { setNewMessage(""); removeFile(); inputRef.current?.focus(); }
   };
 
   const addEmoji = (emoji: string) => {
@@ -130,18 +102,28 @@ const ChatColumn = () => {
   const formatTime = (date: string) =>
     new Date(date).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
 
-  const isVideo = (url: string) => /\.(mp4|webm|mov|avi|mkv)$/i.test(url);
+  const isVideoUrl = (url: string) => /\.(mp4|webm|mov|avi|mkv)$/i.test(url);
 
   return (
     <section id="chat" className="py-16 px-4">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 40, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         viewport={{ once: true }}
         className="max-w-md mx-auto"
       >
+        {/* Header */}
         <div className="text-center mb-6">
-          <MessageCircleHeart className="h-8 w-8 text-primary mx-auto mb-2" />
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-3"
+          >
+            <MessageCircleHeart className="h-7 w-7 text-primary" />
+          </motion.div>
           <h2 className="text-2xl font-display font-semibold text-foreground">
             Chat with me 💬
           </h2>
@@ -150,58 +132,86 @@ const ChatColumn = () => {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col" style={{ height: "480px" }}>
+        {/* Chat container */}
+        <div
+          className="rounded-3xl border border-border/60 overflow-hidden flex flex-col shadow-2xl shadow-primary/5"
+          style={{
+            height: "480px",
+            background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 100%)",
+          }}
+        >
+          {/* Top bar */}
+          <div className="px-4 py-3 border-b border-border/40 flex items-center gap-2" style={{ background: "hsl(var(--card) / 0.8)", backdropFilter: "blur(12px)" }}>
+            <div className="h-2.5 w-2.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-xs text-muted-foreground font-medium">Online</span>
+            <span className="ml-auto text-xs text-muted-foreground/50">{messages.length} messages</span>
+          </div>
+
           {/* Messages area */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin">
             {messages.length === 0 && (
-              <p className="text-center text-muted-foreground text-sm py-8">
-                Koi message nahi hai abhi... pehla message bhejo! 💌
-              </p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex flex-col items-center justify-center h-full text-center"
+              >
+                <div className="text-4xl mb-3">💌</div>
+                <p className="text-muted-foreground text-sm">Pehla message bhejo!</p>
+              </motion.div>
             )}
             <AnimatePresence initial={false}>
-              {messages.map((msg) => (
+              {messages.map((msg, i) => (
                 <motion.div
                   key={msg.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.3, delay: i < 5 ? i * 0.05 : 0 }}
                   className="space-y-1.5"
                 >
                   {/* Visitor message */}
                   <div className="flex justify-end">
-                    <div className="max-w-[80%] rounded-2xl rounded-br-md bg-primary text-primary-foreground px-3.5 py-2 text-sm">
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      className="max-w-[80%] rounded-2xl rounded-br-sm px-3.5 py-2.5 text-sm shadow-md"
+                      style={{
+                        background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.85))",
+                        color: "hsl(var(--primary-foreground))",
+                      }}
+                    >
                       {msg.image_url && (
-                        isVideo(msg.image_url) ? (
-                          <video
-                            src={msg.image_url}
-                            controls
-                            className="rounded-xl max-h-48 w-full mb-1.5"
-                          />
+                        isVideoUrl(msg.image_url) ? (
+                          <video src={msg.image_url} controls className="rounded-xl max-h-48 w-full mb-1.5" />
                         ) : (
                           <a href={msg.image_url} target="_blank" rel="noopener noreferrer">
                             <img
                               src={msg.image_url}
                               alt="Attachment"
-                              className="rounded-xl max-h-48 w-full object-cover mb-1.5"
+                              className="rounded-xl max-h-48 w-full object-cover mb-1.5 hover:opacity-90 transition-opacity"
                             />
                           </a>
                         )
                       )}
-                      {msg.message && !(msg.message === "📸 Photo" || msg.message === "🎥 Video") && (
-                        <p className="whitespace-pre-wrap break-words">{msg.message}</p>
+                      {msg.message && msg.message !== "📸 Photo" && msg.message !== "🎥 Video" && (
+                        <p className="whitespace-pre-wrap break-words leading-relaxed">{msg.message}</p>
                       )}
-                      <p className="text-[10px] opacity-60 mt-1 text-right">
-                        {formatTime(msg.created_at)}
-                      </p>
-                    </div>
+                      <p className="text-[10px] opacity-50 mt-1 text-right">{formatTime(msg.created_at)}</p>
+                    </motion.div>
                   </div>
                   {/* Reply */}
                   {msg.reply && (
-                    <div className="flex justify-start">
-                      <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-muted text-foreground px-3.5 py-2 text-sm">
-                        <p className="text-[10px] font-medium text-primary mb-0.5">💕 Reply</p>
-                        <p className="whitespace-pre-wrap break-words">{msg.reply}</p>
+                    <motion.div
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="flex justify-start"
+                    >
+                      <div
+                        className="max-w-[80%] rounded-2xl rounded-bl-sm px-3.5 py-2.5 text-sm shadow-sm border border-border/40"
+                        style={{ background: "hsl(var(--muted) / 0.7)", backdropFilter: "blur(8px)" }}
+                      >
+                        <p className="text-[10px] font-semibold text-primary mb-0.5">💕 Reply</p>
+                        <p className="whitespace-pre-wrap break-words text-foreground/90 leading-relaxed">{msg.reply}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   )}
                 </motion.div>
               ))}
@@ -212,24 +222,26 @@ const ChatColumn = () => {
           <AnimatePresence>
             {filePreview && (
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden border-t border-border px-3 py-2 bg-background/50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="border-t border-border/40 px-4 py-2.5"
+                style={{ background: "hsl(var(--card) / 0.6)", backdropFilter: "blur(12px)" }}
               >
                 <div className="relative inline-block">
                   {fileType === "video" ? (
-                    <video src={filePreview} className="h-20 rounded-xl border border-border" />
+                    <video src={filePreview} className="h-16 rounded-xl border border-border/60" />
                   ) : (
-                    <img src={filePreview} alt="Selected" className="h-20 w-20 object-cover rounded-xl border border-border" />
+                    <img src={filePreview} alt="Selected" className="h-16 w-16 object-cover rounded-xl border border-border/60" />
                   )}
-                  <button
-                    type="button"
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={removeFile}
-                    className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-md"
+                    className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-lg"
                   >
                     <X className="h-3 w-3" />
-                  </button>
+                  </motion.button>
                 </div>
               </motion.div>
             )}
@@ -242,18 +254,20 @@ const ChatColumn = () => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden border-t border-border"
+                className="overflow-hidden border-t border-border/40"
               >
-                <div className="grid grid-cols-8 gap-1 p-2 bg-background">
+                <div className="grid grid-cols-8 gap-1.5 p-3" style={{ background: "hsl(var(--card) / 0.8)" }}>
                   {EMOJI_LIST.map((emoji) => (
-                    <button
+                    <motion.button
                       key={emoji}
+                      whileHover={{ scale: 1.3 }}
+                      whileTap={{ scale: 0.85 }}
                       type="button"
                       onClick={() => addEmoji(emoji)}
-                      className="text-lg h-8 w-full rounded-lg hover:bg-muted transition-colors flex items-center justify-center"
+                      className="text-lg h-9 w-full rounded-xl hover:bg-primary/10 transition-colors flex items-center justify-center"
                     >
                       {emoji}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </motion.div>
@@ -261,31 +275,31 @@ const ChatColumn = () => {
           </AnimatePresence>
 
           {/* Hidden file input */}
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*,video/*"
-            onChange={handleFileSelect}
-            className="hidden"
-          />
+          <input ref={fileInputRef} type="file" accept="image/*,video/*" onChange={handleFileSelect} className="hidden" />
 
           {/* Input area */}
-          <div className="border-t border-border p-3 flex items-center gap-2 bg-background/50">
-            <button
+          <div
+            className="border-t border-border/40 p-3 flex items-center gap-2"
+            style={{ background: "hsl(var(--card) / 0.6)", backdropFilter: "blur(12px)" }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="text-muted-foreground hover:text-primary transition-colors shrink-0"
-              title="Photo / Video"
+              className="text-muted-foreground hover:text-primary transition-colors shrink-0 p-1.5 rounded-xl hover:bg-primary/10"
             >
               <ImagePlus className="h-5 w-5" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               type="button"
               onClick={() => setShowEmojis((v) => !v)}
-              className="text-muted-foreground hover:text-primary transition-colors shrink-0"
+              className="text-muted-foreground hover:text-primary transition-colors shrink-0 p-1.5 rounded-xl hover:bg-primary/10"
             >
               {showEmojis ? <X className="h-5 w-5" /> : <Smile className="h-5 w-5" />}
-            </button>
+            </motion.button>
             <input
               ref={inputRef}
               type="text"
@@ -294,13 +308,19 @@ const ChatColumn = () => {
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
               placeholder="Message likho... 💕"
               maxLength={500}
-              className="flex-1 rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="flex-1 rounded-xl border border-border/50 bg-background/80 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all"
             />
             <motion.button
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleSend}
               disabled={sending || (!newMessage.trim() && !selectedFile)}
-              className="p-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
+              className="p-2.5 rounded-xl text-primary-foreground transition-all disabled:opacity-40 shrink-0 shadow-md shadow-primary/20"
+              style={{
+                background: sending
+                  ? "hsl(var(--primary) / 0.6)"
+                  : "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))",
+              }}
             >
               <Send className="h-4 w-4" />
             </motion.button>
