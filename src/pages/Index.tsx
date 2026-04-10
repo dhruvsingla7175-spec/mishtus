@@ -2,25 +2,27 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import PasswordGate from "@/components/PasswordGate";
 import HeroSection from "@/components/HeroSection";
-import SectionDivider from "@/components/SectionDivider";
-import EmojiRain from "@/components/EmojiRain";
-import DoubleTapHeart from "@/components/DoubleTapHeart";
-import FloatingNav from "@/components/FloatingNav";
-import FloatingQuotes from "@/components/FloatingQuotes";
-import LazySection from "@/components/LazySection";
-import ChatColumn from "@/components/ChatColumn";
 import BirthdayCountdown from "@/components/BirthdayCountdown";
+import SectionDivider from "@/components/SectionDivider";
 import AnimatedTimeline from "@/components/AnimatedTimeline";
+
 import StarWall from "@/components/StarWall";
 import MemoryGallery from "@/components/MemoryGallery";
 import ReasonsILoveYou from "@/components/ReasonsILoveYou";
+
 import DailyMessage from "@/components/DailyMessage";
 import DreamFuture from "@/components/DreamFuture";
 import SecretMessage from "@/components/SecretMessage";
 import LoveLetter from "@/components/LoveLetter";
 import MandirMoment from "@/components/MandirMoment";
 import IfYoureReadingThis from "@/components/IfYoureReadingThis";
+import ChatColumn from "@/components/ChatColumn";
 import FooterSection from "@/components/FooterSection";
+import EmojiRain from "@/components/EmojiRain";
+import DoubleTapHeart from "@/components/DoubleTapHeart";
+import FloatingNav from "@/components/FloatingNav";
+import FloatingQuotes from "@/components/FloatingQuotes";
+
 
 const Index = () => {
   const [unlocked, setUnlocked] = useState(false);
@@ -49,60 +51,29 @@ const Index = () => {
         <SectionDivider variant="glow" />
         <ChatColumn />
         <SectionDivider variant="dots" />
-
-        <LazySection>
-          <BirthdayCountdown />
-        </LazySection>
+        <BirthdayCountdown />
         <SectionDivider variant="dots" />
-
-        <LazySection>
-          <div id="timeline"><AnimatedTimeline /></div>
-        </LazySection>
+        <div id="timeline"><AnimatedTimeline /></div>
         <SectionDivider variant="glow" />
-
-        <LazySection>
-          <div id="stars"><StarWall /></div>
-        </LazySection>
+        
+        <div id="stars"><StarWall /></div>
         <SectionDivider variant="glow" />
-
-        <LazySection>
-          <div id="gallery"><MemoryGallery /></div>
-        </LazySection>
+        <div id="gallery"><MemoryGallery /></div>
         <SectionDivider variant="dots" />
-
-        <LazySection>
-          <div id="reasons"><ReasonsILoveYou /></div>
-        </LazySection>
+        <div id="reasons"><ReasonsILoveYou /></div>
         <SectionDivider variant="glow" />
-
-        <LazySection>
-          <div id="daily"><DailyMessage /></div>
-        </LazySection>
+        
+        <div id="daily"><DailyMessage /></div>
         <SectionDivider variant="dots" />
-
-        <LazySection>
-          <div id="dreams"><DreamFuture /></div>
-        </LazySection>
+        <div id="dreams"><DreamFuture /></div>
         <SectionDivider variant="glow" />
-
-        <LazySection>
-          <SecretMessage />
-        </LazySection>
+        <SecretMessage />
         <SectionDivider variant="dots" />
-
-        <LazySection>
-          <div id="letter"><LoveLetter /></div>
-        </LazySection>
+        <div id="letter"><LoveLetter /></div>
         <SectionDivider variant="glow" />
-
-        <LazySection>
-          <div id="mandir"><MandirMoment /></div>
-        </LazySection>
+        <div id="mandir"><MandirMoment /></div>
         <SectionDivider variant="dots" />
-
-        <LazySection>
-          <div id="reading"><IfYoureReadingThis /></div>
-        </LazySection>
+        <div id="reading"><IfYoureReadingThis /></div>
         <SectionDivider variant="dots" />
         <FooterSection />
       </div>
