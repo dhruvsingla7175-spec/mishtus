@@ -10,6 +10,7 @@ interface Message {
   name: string;
   message: string;
   created_at: string;
+  image_url: string | null;
 }
 
 const AdminPanel = () => {
@@ -133,6 +134,15 @@ const AdminPanel = () => {
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">{msg.name}</p>
                   <p className="text-sm text-muted-foreground mt-1 whitespace-pre-wrap">{msg.message}</p>
+                  {msg.image_url && (
+                    <a href={msg.image_url} target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={msg.image_url}
+                        alt="Attachment"
+                        className="mt-2 h-32 w-32 object-cover rounded-xl border border-border hover:opacity-80 transition-opacity"
+                      />
+                    </a>
+                  )}
                   <p className="text-xs text-muted-foreground/60 mt-2">
                     {new Date(msg.created_at).toLocaleString("en-IN")}
                   </p>
