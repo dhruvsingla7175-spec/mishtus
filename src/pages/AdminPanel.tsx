@@ -237,6 +237,9 @@ const AdminPanel = () => {
             </motion.div>
           ))}
         </AnimatePresence>
+        <div className="mt-8 border-t border-border pt-8">
+          <MessageBox />
+        </div>
       </div>
     </div>
   );
