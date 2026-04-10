@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const emojis = ["🦋", "✨", "🌸", "💕", "🤍", "💫", "🌷", "💗"];
 
 const EmojiRain = () => {
+  const isMobile = useIsMobile();
+  const count = isMobile ? 8 : 20;
+
   return (
     <div className="pointer-events-none fixed inset-0 z-40 overflow-hidden">
-      {Array.from({ length: 20 }, (_, i) => {
+      {Array.from({ length: count }, (_, i) => {
         const emoji = emojis[i % emojis.length];
         return (
           <motion.div
