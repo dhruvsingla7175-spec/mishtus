@@ -16,6 +16,7 @@ import SecretMessage from "@/components/SecretMessage";
 import LoveLetter from "@/components/LoveLetter";
 import MandirMoment from "@/components/MandirMoment";
 import IfYoureReadingThis from "@/components/IfYoureReadingThis";
+import ChatColumn from "@/components/ChatColumn";
 import FooterSection from "@/components/FooterSection";
 import EmojiRain from "@/components/EmojiRain";
 import DoubleTapHeart from "@/components/DoubleTapHeart";
@@ -72,6 +73,7 @@ const Index = () => {
         <SectionDivider variant="dots" />
         <div id="reading"><IfYoureReadingThis /></div>
         <SectionDivider variant="dots" />
+        <ChatColumn />
         <FooterSection />
       </div>
     </DoubleTapHeart>
