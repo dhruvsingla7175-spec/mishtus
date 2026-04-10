@@ -19,6 +19,9 @@ import IfYoureReadingThis from "@/components/IfYoureReadingThis";
 import ChatColumn from "@/components/ChatColumn";
 import FooterSection from "@/components/FooterSection";
 import EmojiRain from "@/components/EmojiRain";
+import PhotoSlideshow from "@/components/PhotoSlideshow";
+import LoveQuiz from "@/components/LoveQuiz";
+import WishJar from "@/components/WishJar";
 import DoubleTapHeart from "@/components/DoubleTapHeart";
 import FloatingNav from "@/components/FloatingNav";
 import FloatingQuotes from "@/components/FloatingQuotes";
@@ -74,6 +77,12 @@ const Index = () => {
         <div id="mandir"><MandirMoment /></div>
         <SectionDivider variant="dots" />
         <div id="reading"><IfYoureReadingThis /></div>
+        <SectionDivider variant="glow" />
+        <div id="slideshow"><PhotoSlideshow /></div>
+        <SectionDivider variant="dots" />
+        <div id="quiz"><LoveQuiz /></div>
+        <SectionDivider variant="glow" />
+        <div id="wishjar"><WishJar /></div>
         <SectionDivider variant="dots" />
         <FooterSection />
       </div>
