@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MessageCircleHeart, Smile, X } from "lucide-react";
+import { Send, MessageCircleHeart, Smile, X, ImagePlus, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -14,6 +14,7 @@ interface ChatMessage {
   message: string;
   created_at: string;
   reply: string | null;
+  image_url: string | null;
 }
 
 const ChatColumn = () => {
@@ -21,29 +22,27 @@ const ChatColumn = () => {
   const [newMessage, setNewMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [filePreview, setFilePreview] = useState<string | null>(null);
+  const [fileType, setFileType] = useState<"image" | "video" | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchMessages = async () => {
     const { data } = await supabase
       .from("visitor_messages")
-      .select("id, message, created_at, reply")
+      .select("id, message, created_at, reply, image_url")
       .order("created_at", { ascending: true });
     if (data) setMessages(data);
   };
 
   useEffect(() => {
     fetchMessages();
-
     const channel = supabase
       .channel("chat_realtime")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "visitor_messages" },
-        () => fetchMessages()
-      )
+      .on("postgres_changes", { event: "*", schema: "public", table: "visitor_messages" }, () => fetchMessages())
       .subscribe();
-
     return () => { supabase.removeChannel(channel); };
   }, []);
 
@@ -53,18 +52,72 @@ const ChatColumn = () => {
     }
   }, [messages]);
 
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const isImage = file.type.startsWith("image/");
+    const isVideo = file.type.startsWith("video/");
+
+    if (!isImage && !isVideo) {
+      toast.error("Sirf photo ya video upload karo 📸🎥");
+      return;
+    }
+    if (file.size > 20 * 1024 * 1024) {
+      toast.error("File 20MB se chhoti honi chahiye 🙈");
+      return;
+    }
+
+    setSelectedFile(file);
+    setFileType(isImage ? "image" : "video");
+    setFilePreview(URL.createObjectURL(file));
+  };
+
+  const removeFile = () => {
+    setSelectedFile(null);
+    if (filePreview) URL.revokeObjectURL(filePreview);
+    setFilePreview(null);
+    setFileType(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   const handleSend = async () => {
-    if (!newMessage.trim()) return;
+    if (!newMessage.trim() && !selectedFile) return;
     setSending(true);
+
+    let imageUrl: string | null = null;
+
+    if (selectedFile) {
+      const ext = selectedFile.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error: uploadError } = await supabase.storage
+        .from("message-attachments")
+        .upload(fileName, selectedFile);
+
+      if (uploadError) {
+        toast.error("File upload nahi hui 😢 Try again!");
+        setSending(false);
+        return;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from("message-attachments")
+        .getPublicUrl(fileName);
+      imageUrl = urlData.publicUrl;
+    }
+
     const { error } = await supabase.from("visitor_messages").insert({
-      message: newMessage.trim(),
+      message: newMessage.trim() || (fileType === "video" ? "🎥 Video" : "📸 Photo"),
       name: "Visitor",
+      image_url: imageUrl,
     });
+
     setSending(false);
     if (error) {
       toast.error("Message nahi gaya 😢");
     } else {
       setNewMessage("");
+      removeFile();
       inputRef.current?.focus();
     }
   };
@@ -74,12 +127,10 @@ const ChatColumn = () => {
     inputRef.current?.focus();
   };
 
-  const formatTime = (date: string) => {
-    return new Date(date).toLocaleTimeString("en-IN", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
+  const formatTime = (date: string) =>
+    new Date(date).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+
+  const isVideo = (url: string) => /\.(mp4|webm|mov|avi|mkv)$/i.test(url);
 
   return (
     <section id="chat" className="py-16 px-4">
@@ -99,7 +150,7 @@ const ChatColumn = () => {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col" style={{ height: "420px" }}>
+        <div className="rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg overflow-hidden flex flex-col" style={{ height: "480px" }}>
           {/* Messages area */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.length === 0 && (
@@ -115,16 +166,35 @@ const ChatColumn = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-1.5"
                 >
-                  {/* Visitor message - right aligned */}
+                  {/* Visitor message */}
                   <div className="flex justify-end">
                     <div className="max-w-[80%] rounded-2xl rounded-br-md bg-primary text-primary-foreground px-3.5 py-2 text-sm">
-                      <p className="whitespace-pre-wrap break-words">{msg.message}</p>
+                      {msg.image_url && (
+                        isVideo(msg.image_url) ? (
+                          <video
+                            src={msg.image_url}
+                            controls
+                            className="rounded-xl max-h-48 w-full mb-1.5"
+                          />
+                        ) : (
+                          <a href={msg.image_url} target="_blank" rel="noopener noreferrer">
+                            <img
+                              src={msg.image_url}
+                              alt="Attachment"
+                              className="rounded-xl max-h-48 w-full object-cover mb-1.5"
+                            />
+                          </a>
+                        )
+                      )}
+                      {msg.message && !(msg.message === "📸 Photo" || msg.message === "🎥 Video") && (
+                        <p className="whitespace-pre-wrap break-words">{msg.message}</p>
+                      )}
                       <p className="text-[10px] opacity-60 mt-1 text-right">
                         {formatTime(msg.created_at)}
                       </p>
                     </div>
                   </div>
-                  {/* Reply - left aligned */}
+                  {/* Reply */}
                   {msg.reply && (
                     <div className="flex justify-start">
                       <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-muted text-foreground px-3.5 py-2 text-sm">
@@ -137,6 +207,33 @@ const ChatColumn = () => {
               ))}
             </AnimatePresence>
           </div>
+
+          {/* File preview */}
+          <AnimatePresence>
+            {filePreview && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden border-t border-border px-3 py-2 bg-background/50"
+              >
+                <div className="relative inline-block">
+                  {fileType === "video" ? (
+                    <video src={filePreview} className="h-20 rounded-xl border border-border" />
+                  ) : (
+                    <img src={filePreview} alt="Selected" className="h-20 w-20 object-cover rounded-xl border border-border" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={removeFile}
+                    className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center shadow-md"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Emoji picker */}
           <AnimatePresence>
@@ -163,8 +260,25 @@ const ChatColumn = () => {
             )}
           </AnimatePresence>
 
+          {/* Hidden file input */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*,video/*"
+            onChange={handleFileSelect}
+            className="hidden"
+          />
+
           {/* Input area */}
           <div className="border-t border-border p-3 flex items-center gap-2 bg-background/50">
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="text-muted-foreground hover:text-primary transition-colors shrink-0"
+              title="Photo / Video"
+            >
+              <ImagePlus className="h-5 w-5" />
+            </button>
             <button
               type="button"
               onClick={() => setShowEmojis((v) => !v)}
@@ -185,7 +299,7 @@ const ChatColumn = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={handleSend}
-              disabled={sending || !newMessage.trim()}
+              disabled={sending || (!newMessage.trim() && !selectedFile)}
               className="p-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
             >
               <Send className="h-4 w-4" />
