@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, MessageCircle, Trash2, RefreshCw } from "lucide-react";
+import { Lock, MessageCircle, Trash2, RefreshCw, Reply, Send, X } from "lucide-react";
+import { toast } from "sonner";
 
 const ADMIN_PASSWORD = "mishtu2025";
 
@@ -11,6 +12,7 @@ interface Message {
   message: string;
   created_at: string;
   image_url: string | null;
+  reply: string | null;
 }
 
 const AdminPanel = () => {
@@ -18,6 +20,9 @@ const AdminPanel = () => {
   const [password, setPassword] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [replyText, setReplyText] = useState("");
+  const [sendingReply, setSendingReply] = useState(false);
 
   const handleLogin = () => {
     if (password === ADMIN_PASSWORD) {
@@ -46,7 +51,6 @@ const AdminPanel = () => {
     if (authenticated) {
       fetchMessages();
 
-      // Real-time subscription
       const channel = supabase
         .channel("visitor_messages_changes")
         .on(
@@ -67,6 +71,26 @@ const AdminPanel = () => {
   const deleteMessage = async (id: string) => {
     await supabase.from("visitor_messages").delete().eq("id", id);
     setMessages((prev) => prev.filter((m) => m.id !== id));
+  };
+
+  const handleReply = async (id: string) => {
+    if (!replyText.trim()) return;
+    setSendingReply(true);
+    const { error } = await supabase
+      .from("visitor_messages")
+      .update({ reply: replyText.trim() })
+      .eq("id", id);
+    setSendingReply(false);
+    if (error) {
+      toast.error("Reply nahi gaya 😢");
+    } else {
+      toast.success("Reply saved! 💕");
+      setMessages((prev) =>
+        prev.map((m) => (m.id === id ? { ...m, reply: replyText.trim() } : m))
+      );
+      setReplyingTo(null);
+      setReplyText("");
+    }
   };
 
   if (!authenticated) {
@@ -147,13 +171,68 @@ const AdminPanel = () => {
                     {new Date(msg.created_at).toLocaleString("en-IN")}
                   </p>
                 </div>
-                <button
-                  onClick={() => deleteMessage(msg.id)}
-                  className="p-1.5 rounded-lg hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => {
+                      setReplyingTo(replyingTo === msg.id ? null : msg.id);
+                      setReplyText(msg.reply || "");
+                    }}
+                    className="p-1.5 rounded-lg hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Reply className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => deleteMessage(msg.id)}
+                    className="p-1.5 rounded-lg hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
+
+              {/* Existing reply */}
+              {msg.reply && replyingTo !== msg.id && (
+                <div className="mt-3 ml-3 pl-3 border-l-2 border-primary/30">
+                  <p className="text-xs font-medium text-primary">Tumhara reply ✨</p>
+                  <p className="text-sm text-foreground/80 mt-0.5">{msg.reply}</p>
+                </div>
+              )}
+
+              {/* Reply input */}
+              <AnimatePresence>
+                {replyingTo === msg.id && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-3 flex gap-2">
+                      <input
+                        type="text"
+                        value={replyText}
+                        onChange={(e) => setReplyText(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleReply(msg.id)}
+                        placeholder="Reply likho..."
+                        className="flex-1 rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      />
+                      <button
+                        onClick={() => handleReply(msg.id)}
+                        disabled={sendingReply || !replyText.trim()}
+                        className="p-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50"
+                      >
+                        <Send className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => { setReplyingTo(null); setReplyText(""); }}
+                        className="p-2 rounded-xl hover:bg-muted transition-colors text-muted-foreground"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </AnimatePresence>

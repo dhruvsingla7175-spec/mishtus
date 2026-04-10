@@ -21,6 +21,7 @@ export type Database = {
           image_url: string | null
           message: string
           name: string
+          reply: string | null
         }
         Insert: {
           created_at?: string
@@ -28,6 +29,7 @@ export type Database = {
           image_url?: string | null
           message: string
           name?: string
+          reply?: string | null
         }
         Update: {
           created_at?: string
@@ -35,6 +37,7 @@ export type Database = {
           image_url?: string | null
           message?: string
           name?: string
+          reply?: string | null
         }
         Relationships: []
       }

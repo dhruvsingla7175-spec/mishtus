@@ -1,0 +1,1 @@
+ALTER TABLE public.visitor_messages ADD COLUMN reply text;
