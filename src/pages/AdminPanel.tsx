@@ -158,7 +158,6 @@ const AdminPanel = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xs bg-muted text-muted-foreground px-1.5 py-0.5 rounded-md font-mono">#{messages.length - index}</span>
-                    <p className="text-sm font-medium text-foreground">{msg.name}</p>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1 whitespace-pre-wrap">{msg.message}</p>
                   {msg.image_url && (
@@ -196,7 +195,6 @@ const AdminPanel = () => {
               {/* Existing reply */}
               {msg.reply && replyingTo !== msg.id && (
                 <div className="mt-3 ml-3 pl-3 border-l-2 border-primary/30">
-                  <p className="text-xs font-medium text-primary">Tumhara reply ✨</p>
                   <p className="text-sm text-foreground/80 mt-0.5">{msg.reply}</p>
                 </div>
               )}
