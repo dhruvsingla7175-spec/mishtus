@@ -128,7 +128,10 @@ const ChatColumn = () => {
             Chat with me 💬
           </h2>
           <p className="text-muted-foreground text-sm mt-1">
-            Yahan message karo, mujhe dikh jayega ✨
+            Sirf mujhe show hoga — kabhi bhi koi bhi message dena ho toh you can easily contact me ✨
+          </p>
+          <p className="text-muted-foreground text-xs mt-1">
+            Aur mein iss website ke through regular updates deta rhunga 🤍
           </p>
         </div>
 
