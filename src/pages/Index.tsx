@@ -49,6 +49,8 @@ const Index = () => {
         <FloatingQuotes />
         <HeroSection />
         <SectionDivider variant="glow" />
+        <ChatColumn />
+        <SectionDivider variant="dots" />
         <BirthdayCountdown />
         <SectionDivider variant="dots" />
         <div id="timeline"><AnimatedTimeline /></div>
@@ -73,7 +75,6 @@ const Index = () => {
         <SectionDivider variant="dots" />
         <div id="reading"><IfYoureReadingThis /></div>
         <SectionDivider variant="dots" />
-        <ChatColumn />
         <FooterSection />
       </div>
     </DoubleTapHeart>
