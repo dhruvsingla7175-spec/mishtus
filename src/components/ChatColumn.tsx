@@ -142,7 +142,7 @@ const ChatColumn = () => {
         >
           {/* Top bar */}
           <div className="px-4 py-3 border-b border-border/40 flex items-center gap-2" style={{ background: "hsl(var(--card) / 0.8)", backdropFilter: "blur(12px)" }}>
-            <div className="h-2.5 w-2.5 rounded-full bg-green-400 animate-pulse" />
+            <div className="h-2.5 w-2.5 rounded-full bg-accent animate-pulse" />
             <span className="text-xs text-muted-foreground font-medium">Online</span>
             <span className="ml-auto text-xs text-muted-foreground/50">{messages.length} messages</span>
           </div>
